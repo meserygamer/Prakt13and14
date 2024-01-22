@@ -94,7 +94,8 @@
 					HorizontalAlignment="Center"
 					Height="60"
 					Width="350"
-					Grid.Column="1">
+					Grid.Column="1"
+					Command="{Binding AuthorizeCommand}">
 				
 				<TextBlock Text="Войти"
 						   HorizontalAlignment="Center"

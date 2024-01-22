@@ -4,6 +4,13 @@ namespace TeachersTestAppWithLogging.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase
     {
+        public MainWindowViewModel() 
+        {
+            AuthorizationUCViewModel = new AuthorizationUCViewModel();
+            AuthorizationUCViewModel.NotifyUserWasSuccessfulAuthorize += UserWasAuthorize;
+        }
+
+
         public bool IsAuthPageOpen
         {
             get => _isAuthPageOpen;
@@ -23,8 +30,18 @@ namespace TeachersTestAppWithLogging.ViewModels
         }
 
 
+        private int _userID = -1;
+
         private bool _isAuthPageOpen = true;
 
-        private AuthorizationUCViewModel _authorizationUCViewModel = new AuthorizationUCViewModel();
+        private AuthorizationUCViewModel _authorizationUCViewModel;
+
+
+        private void UserWasAuthorize(int userID)
+        {
+            _userID = userID;
+
+            IsAuthPageOpen = false;
+        }
     }
 }
