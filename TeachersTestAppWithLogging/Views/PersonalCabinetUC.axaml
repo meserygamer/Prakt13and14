@@ -1,0 +1,179 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:themes="clr-namespace:Material.Styles.Themes;assembly=Material.Styles"
+			 xmlns:vm="using:TeachersTestAppWithLogging.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="TeachersTestAppWithLogging.Views.PersonalCabinetUC">
+
+	<UserControl.Styles>
+
+		<Style Selector="HeaderedContentControl">
+			<Setter Property="Width" Value="200"/>
+			<Setter Property="Height" Value="50"/>
+			<Setter Property="Margin" Value="0 0 10 0"/>
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate>
+						<Grid>
+							<Grid.RowDefinitions>
+								<RowDefinition Height="Auto"/>
+								<RowDefinition Height="*"/>
+							</Grid.RowDefinitions>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="Auto"/>
+								<ColumnDefinition Width="*"/>
+							</Grid.ColumnDefinitions>
+							<Border ZIndex="1" Padding="5,0,5,0" Background="White" Margin="5,0,0,0">
+								<TextBlock TextBlock.FontWeight="Bold" Text="{TemplateBinding Header}" />
+							</Border>
+							<Border Grid.RowSpan="2" Grid.ColumnSpan="2"
+									CornerRadius="5"
+									Margin="0,10,0,0"
+									BorderThickness="1">
+								<ContentPresenter Content="{TemplateBinding Content}" />
+							</Border>
+						</Grid>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+
+		<Style Selector="HeaderedContentControl.Osn">
+			<Setter Property="Width" Value="300"/>
+			<Setter Property="Height" Value="50"/>
+			<Setter Property="Margin" Value="0 0 10 0"/>
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate>
+						<Grid>
+							<Grid.RowDefinitions>
+								<RowDefinition Height="Auto"/>
+								<RowDefinition Height="*"/>
+							</Grid.RowDefinitions>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="Auto"/>
+								<ColumnDefinition Width="*"/>
+							</Grid.ColumnDefinitions>
+							<Border ZIndex="1" Padding="5,0,5,0" Background="White" Margin="5,0,0,0">
+								<TextBlock TextBlock.FontWeight="Bold" Text="{TemplateBinding Header}" />
+							</Border>
+							<Border Grid.RowSpan="2" Grid.ColumnSpan="2"
+									CornerRadius="5"
+									Margin="0,10,0,0"
+									BorderThickness="1">
+								<ContentPresenter Content="{TemplateBinding Content}" />
+							</Border>
+						</Grid>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+
+	</UserControl.Styles>
+
+	<Border Padding="25 0 25 0">
+		<Grid>
+
+			<Grid.RowDefinitions>
+				<RowDefinition/>
+				<RowDefinition/>
+				<RowDefinition/>
+				<RowDefinition/>
+				<RowDefinition/>
+				<RowDefinition/>
+			</Grid.RowDefinitions>
+
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition/>
+				<ColumnDefinition/>
+			</Grid.ColumnDefinitions>
+			
+			<Label Grid.Row="0" Grid.ColumnSpan="2"
+		           Content="Личный кабинет"
+		           FontSize="22"
+		           HorizontalAlignment="Center"
+		           FontWeight="Bold"/>
+
+			<StackPanel Orientation="Horizontal"
+						Grid.Row="1">
+
+				<HeaderedContentControl Header="Фамилия">
+					
+					<TextBox/>
+					
+				</HeaderedContentControl>
+				
+				<HeaderedContentControl Header="Имя">
+
+					<TextBox/>
+
+				</HeaderedContentControl>
+
+				<HeaderedContentControl Header="Отчество">
+
+					<TextBox/>
+
+				</HeaderedContentControl>
+				
+			</StackPanel>
+
+			<HeaderedContentControl Header="Логин"
+									Grid.Row="2"
+									HorizontalAlignment="Left"
+									Classes="Osn">
+
+				<TextBox/>
+
+			</HeaderedContentControl>
+
+			<HeaderedContentControl Header="Пол"
+									Grid.Row="3"
+									HorizontalAlignment="Left"
+									Classes="Osn">
+
+				<ComboBox/>
+
+			</HeaderedContentControl>
+
+			<HeaderedContentControl Header="Дата рождения"
+									Grid.Row="4"
+									Classes="Osn"
+									HorizontalAlignment="Left">
+
+				<DatePicker/>
+
+			</HeaderedContentControl>
+
+			<HeaderedContentControl Header="Стаж (В годах)"
+									Grid.Row="2" Grid.Column="1"
+									Classes="Osn"
+									HorizontalAlignment="Left">
+
+				<TextBox/>
+
+			</HeaderedContentControl>
+
+			<HeaderedContentControl Header="Почта"
+									Grid.Row="3" Grid.Column="1"
+									Classes="Osn"
+									HorizontalAlignment="Left">
+
+				<TextBox/>
+
+			</HeaderedContentControl>
+			
+			<HeaderedContentControl Header="Телефон"
+									Grid.Row="4" Grid.Column="1"
+									Classes="Osn"
+									HorizontalAlignment="Left">
+
+				<TextBox/>
+
+			</HeaderedContentControl>
+			
+		</Grid>
+	</Border>
+	
+</UserControl>
