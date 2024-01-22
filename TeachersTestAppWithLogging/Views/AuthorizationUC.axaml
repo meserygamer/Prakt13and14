@@ -2,6 +2,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:themes="clr-namespace:Material.Styles.Themes;assembly=Material.Styles"
 			 xmlns:vm="using:TeachersTestAppWithLogging.ViewModels"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="TeachersTestAppWithLogging.Views.AuthorizationUC"
@@ -11,30 +12,99 @@
 		<vm:AuthorizationUCViewModel/>
 	</Design.DataContext>
 
-	<Grid>
+	<UserControl.Styles>
 
-		<Grid.RowDefinitions>
-			<RowDefinition/>
-			<RowDefinition/>
-			<RowDefinition/>
-			<RowDefinition/>
-		</Grid.RowDefinitions>
+		<Style Selector="HeaderedContentControl">
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate>
+						<Grid>
+							<Grid.RowDefinitions>
+								<RowDefinition Height="Auto"/>
+								<RowDefinition Height="*"/>
+							</Grid.RowDefinitions>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="Auto"/>
+								<ColumnDefinition Width="*"/>
+							</Grid.ColumnDefinitions>
+							<Border ZIndex="1" Padding="5,0,5,0" Background="White" Margin="5,0,0,0">
+								<TextBlock TextBlock.FontWeight="Bold" Text="{TemplateBinding Header}" />
+							</Border>
+							<Border Grid.RowSpan="2" Grid.ColumnSpan="2"
+									CornerRadius="5"
+									Padding="15 0 0 0"
+									Margin="0,10,0,0"
+									BorderBrush="Black"
+									BorderThickness="1">
+								<ContentPresenter Content="{TemplateBinding Content}" />
+							</Border>
+						</Grid>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
 
-		<Label Grid.Row="0"
-			   Content="Авторизация"
-			   FontSize="22"
-			   HorizontalAlignment="Center"
-			   FontWeight="Bold"/>
+		<themes:MaterialTheme BaseTheme="Light" PrimaryColor="Pink" SecondaryColor="Blue" />
 
-		<HeaderedContentControl Grid.Row="1"/>
+	</UserControl.Styles>
 
-		<HeaderedContentControl Grid.Row="2"/>
+	<Border Padding="25 0 25 0">
 
-		<Button Grid.Row="3"
-				HorizontalAlignment="Center"
-				Height="40"
-				Width="250"/>
+		<Grid>
 
-	</Grid>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition/>
+				<ColumnDefinition Width="2*"/>
+				<ColumnDefinition/>
+			</Grid.ColumnDefinitions>
+
+			<Grid.RowDefinitions>
+				<RowDefinition/>
+				<RowDefinition Height="100"/>
+				<RowDefinition Height="100"/>
+				<RowDefinition/>
+			</Grid.RowDefinitions>
+
+			<Label Grid.Row="0"
+				   Grid.Column="1"
+				   Content="Авторизация"
+				   FontSize="22"
+				   HorizontalAlignment="Center"
+				   FontWeight="Bold"/>
+
+			<HeaderedContentControl Grid.Row="1"
+									Grid.Column="1"
+									Header="Логин"
+									Height="60">
+
+				<TextBox Text="{Binding Login}"/>
+
+			</HeaderedContentControl>
+
+			<HeaderedContentControl Grid.Row="2"
+									Grid.Column="1"
+									Header="Пароль"
+									Height="60">
+
+				<TextBox Text="{Binding Password}" PasswordChar="*"/>
+
+			</HeaderedContentControl>
+
+			<Button Grid.Row="3"
+					HorizontalAlignment="Center"
+					Height="60"
+					Width="350"
+					Grid.Column="1">
+				
+				<TextBlock Text="Войти"
+						   HorizontalAlignment="Center"
+						   VerticalAlignment="Center"
+						   Foreground="White"/>
+				
+			</Button>
+
+		</Grid>
+
+	</Border>
 	
 </UserControl>
