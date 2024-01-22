@@ -13,30 +13,6 @@
         <vm:MainWindowViewModel/>
     </Design.DataContext>
 
-	<Grid>
-
-		<Grid.RowDefinitions>
-			<RowDefinition/>
-			<RowDefinition/>
-			<RowDefinition/>
-			<RowDefinition/>
-		</Grid.RowDefinitions>
-		
-		<Label Grid.Row="0"
-			   Content="Авторизация"
-			   FontSize="22"
-			   HorizontalAlignment="Center"
-			   FontWeight="Bold"/>
-		
-		<HeaderedContentControl Grid.Row="1"/>
-		
-		<HeaderedContentControl Grid.Row="2"/>
-		
-		<Button Grid.Row="3"
-				HorizontalAlignment="Center"
-				Height="40"
-				Width="250"/>
-		
-	</Grid>
+	
 
 </Window>
