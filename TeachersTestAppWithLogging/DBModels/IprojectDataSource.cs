@@ -15,5 +15,12 @@ namespace TeachersTestAppWithLogging.DBModels
         /// <param name="password">Пароль пользователя</param>
         /// <returns>Id пользователя в системе, если авторизация прошла успешно</returns>
         Task<int> AuthorizeUserInSystemAsync(string login, string password);
+
+        /// <summary>
+        /// Метод получения пользователя по id
+        /// </summary>
+        /// <param name="userID">id пользователя</param>
+        /// <returns>пользователь</returns>
+        Task<UserDatum?> FindUserByIdAsync(int userID);
     }
 }

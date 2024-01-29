@@ -20,6 +20,15 @@ namespace TeachersTestAppWithLogging.DBModels
             return user.IdUser;
         }
 
+        public async Task<UserDatum?> FindUserByIdAsync(int userID)
+        {
+            UserDatum? user;
+            using (_dbContext = new Vorobiew2Context())
+            {
+                user = await Task.Run(() => _dbContext.UserData.Find(userID));
+            }
+            return user;
+        }
 
         private Vorobiew2Context _dbContext;
     }

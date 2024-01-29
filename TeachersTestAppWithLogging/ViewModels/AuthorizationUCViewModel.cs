@@ -10,8 +10,9 @@ namespace TeachersTestAppWithLogging.ViewModels
 {
 	public class AuthorizationUCViewModel : ReactiveObject
     {
-		public AuthorizationUCViewModel() 
+		public AuthorizationUCViewModel(IProjectDataSource source) 
 		{
+			ProjectDataSource = source;
 			AuthorizeCommand = ReactiveCommand.Create<string>(AuthorizeInSystemCommandMethod);
         }
 
@@ -29,12 +30,18 @@ namespace TeachersTestAppWithLogging.ViewModels
             get => _password;
             set => this.RaiseAndSetIfChanged(ref _password, value);
         }
+		public IProjectDataSource ProjectDataSource
+        {
+			get => _projectDataSource;
+			set => this.RaiseAndSetIfChanged(ref _projectDataSource, value);
+		}
 
 		public ReactiveCommand<string, Unit> AuthorizeCommand { get; }
 
 
         private string _login;
 		private string _password;
+		private IProjectDataSource _projectDataSource;
 
 
 		private async void AuthorizeInSystemCommandMethod(string param)

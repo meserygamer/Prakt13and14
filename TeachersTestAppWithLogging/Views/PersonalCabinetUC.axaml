@@ -103,19 +103,19 @@
 
 				<HeaderedContentControl Header="Фамилия">
 					
-					<TextBox/>
+					<TextBox Text="{Binding UserData.Surname}"/>
 					
 				</HeaderedContentControl>
 				
 				<HeaderedContentControl Header="Имя">
 
-					<TextBox/>
+					<TextBox Text="{Binding UserData.Name}"/>
 
 				</HeaderedContentControl>
 
 				<HeaderedContentControl Header="Отчество">
 
-					<TextBox/>
+					<TextBox Text="{Binding UserData.Patronymic}"/>
 
 				</HeaderedContentControl>
 				
@@ -126,7 +126,7 @@
 									HorizontalAlignment="Left"
 									Classes="Osn">
 
-				<TextBox/>
+				<TextBox Text="{Binding UserData.IdUserNavigation.Login}"/>
 
 			</HeaderedContentControl>
 
@@ -144,7 +144,7 @@
 									Classes="Osn"
 									HorizontalAlignment="Left">
 
-				<DatePicker/>
+				<DatePicker SelectedDate="{Binding UserData.Birthdate}"/>
 
 			</HeaderedContentControl>
 
@@ -153,7 +153,7 @@
 									Classes="Osn"
 									HorizontalAlignment="Left">
 
-				<TextBox/>
+				<TextBox Text="{Binding UserData.Worktime}"/>
 
 			</HeaderedContentControl>
 
@@ -162,7 +162,7 @@
 									Classes="Osn"
 									HorizontalAlignment="Left">
 
-				<TextBox/>
+				<TextBox Text="{Binding UserData.Email}"/>
 
 			</HeaderedContentControl>
 			
@@ -171,7 +171,7 @@
 									Classes="Osn"
 									HorizontalAlignment="Left">
 
-				<TextBox/>
+				<TextBox Text="{Binding PhoneNumber}"/>
 
 			</HeaderedContentControl>
 			
