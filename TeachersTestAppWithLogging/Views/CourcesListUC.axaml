@@ -2,7 +2,75 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:vm="using:TeachersTestAppWithLogging.ViewModels"
+			 xmlns:dbm="using:TeachersTestAppWithLogging"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="TeachersTestAppWithLogging.Views.CourcesListUC">
-  Welcome to Avalonia!
+             x:Class="TeachersTestAppWithLogging.Views.CourcesListUC"
+			 x:DataType="vm:CourcesListUCViewModel">
+
+	<UserControl.Styles>
+		
+		<Style Selector="ListBox">
+
+			<Setter Property="ItemTemplate">
+
+				<Setter.Value>
+
+					<DataTemplate DataType="dbm:Cource">
+
+						<Border CornerRadius="5"
+								BorderThickness="1" BorderBrush="Black">
+
+							<Grid>
+
+								<Grid.RowDefinitions>
+									<RowDefinition/>
+									<RowDefinition/>
+									<RowDefinition/>
+								</Grid.RowDefinitions>
+								
+								<TextBlock Grid.Row="0"/>
+								
+								<TextBlock Grid.Row="1"/>
+								
+								<TextBlock Grid.Row="2"/>
+								
+							</Grid>
+							
+						</Border>
+						
+					</DataTemplate>
+					
+				</Setter.Value>
+				
+			</Setter>
+			
+		</Style>
+		
+	</UserControl.Styles>
+
+	<Border Padding="5">
+
+		<Grid>
+
+			<Grid.RowDefinitions>
+				<RowDefinition Height="0.15*"/>
+				<RowDefinition Height="0.85*"/>
+			</Grid.RowDefinitions>
+
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="0.2*"/>
+				<ColumnDefinition Width="0.8*"/>
+			</Grid.ColumnDefinitions>
+
+			<Label Grid.Row="0" Grid.ColumnSpan="2"
+				   Content="Список курсов" FontSize="22" FontWeight="Bold"
+				   HorizontalAlignment="Center"/>
+
+			<ListBox Grid.Column="1" Grid.Row="1"/>
+
+		</Grid>
+
+	</Border>
+	
 </UserControl>

@@ -8,10 +8,6 @@
              x:Class="TeachersTestAppWithLogging.Views.AuthorizationUC"
 			 x:DataType="vm:AuthorizationUCViewModel">
 
-	<Design.DataContext>
-		<vm:AuthorizationUCViewModel/>
-	</Design.DataContext>
-
 	<UserControl.Styles>
 
 		<Style Selector="HeaderedContentControl">
