@@ -17,12 +17,23 @@ namespace TeachersTestAppWithLogging.DBModels
         Task<int> AuthorizeUserInSystemAsync(string login, string password);
 
         /// <summary>
-        /// Метод получения пользователя по id
+        /// Метод получения пользователя по id асинхронный
         /// </summary>
         /// <param name="userID">id пользователя</param>
         /// <returns>пользователь</returns>
         Task<UserDatum?> FindUserByIdAsync(int userID);
 
+        /// <summary>
+        /// Метод получения пользователя по id
+        /// </summary>
+        /// <param name="userID">id пользователя</param>
+        /// <returns>пользователь</returns>
         UserDatum? FindUserByIdSync(int userID);
+
+        /// <summary>
+        /// Метод получения списка гендеров пользователей
+        /// </summary>
+        /// <returns>Список гендеров</returns>
+        List<UserGender> GetAllGenders();
     }
 }

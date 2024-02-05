@@ -135,7 +135,7 @@
 									HorizontalAlignment="Left"
 									Classes="Osn">
 
-				<ComboBox/>
+				<ComboBox ItemsSource="{Binding GenderList}" SelectedItem="{Binding UserData.IdGenderNavigation}"/>
 
 			</HeaderedContentControl>
 

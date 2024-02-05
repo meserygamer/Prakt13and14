@@ -35,10 +35,19 @@ namespace TeachersTestAppWithLogging.DBModels
             UserDatum? user;
             using (_dbContext = new Vorobiew2Context()) user = _dbContext.UserData
                                                                          .Include(a => a.IdUserNavigation)
+                                                                         .Include(a => a.IdGenderNavigation)
                                                                          .Where(a => a.IdUser == userID)
                                                                          .FirstOrDefault();
             return user;
         }
+
+        public List<UserGender> GetAllGenders()
+        {
+            List<UserGender> userGenders;
+            using (_dbContext = new Vorobiew2Context()) userGenders = _dbContext.UserGenders.ToList();
+            return userGenders;
+        }
+
 
         private Vorobiew2Context _dbContext;
     }

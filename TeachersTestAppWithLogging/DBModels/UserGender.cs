@@ -10,4 +10,7 @@ public partial class UserGender
     public string Gender { get; set; } = null!;
 
     public virtual ICollection<UserDatum> UserData { get; set; } = new List<UserDatum>();
+
+
+    public override string ToString() => Gender;
 }
