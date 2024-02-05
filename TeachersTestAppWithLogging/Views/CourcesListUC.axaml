@@ -21,7 +21,7 @@
 						<Border CornerRadius="5"
 								BorderThickness="1" BorderBrush="Black"
 								Margin="0 0 0 20"
-								Padding="5">
+								Padding="10 5 10 5">
 
 							<Grid>
 
@@ -40,7 +40,7 @@
 										   Margin="0 0 0 5"/>
 								
 								<TextBlock Grid.Row="2"
-										   Text="{Binding}"/>
+										   Text="{Binding PeopleCompleteNumber}"/>
 								
 							</Grid>
 							
@@ -76,6 +76,30 @@
 
 			<ItemsRepeater Grid.Column="1" Grid.Row="1"
 					 ItemsSource="{Binding Cources}"/>
+
+			<Grid Grid.Row="1" Grid.Column="0">
+
+				<Grid.RowDefinitions>
+					<RowDefinition/>
+					<RowDefinition/>
+				</Grid.RowDefinitions>
+
+				<HeaderedContentControl Grid.Row="0"
+										Header="Сортировка">
+
+					<StackPanel>
+
+						<ComboBox/>
+
+						<RadioButton/>
+
+						<RadioButton/>
+
+					</StackPanel>
+
+				</HeaderedContentControl>
+				
+			</Grid>
 
 		</Grid>
 

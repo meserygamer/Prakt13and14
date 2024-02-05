@@ -54,7 +54,9 @@ namespace TeachersTestAppWithLogging.DBModels
             Vorobiew2Context _dbContextForThis;
             using (_dbContextForThis = new Vorobiew2Context())
             {
-                cources = _dbContextForThis.Cources.ToList();
+                cources = _dbContextForThis.Cources
+                                           .Include(a => a.TeacherCources)
+                                           .ToList();
             }
             return cources;
         }
