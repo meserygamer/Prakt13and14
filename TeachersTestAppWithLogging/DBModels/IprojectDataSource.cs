@@ -22,5 +22,7 @@ namespace TeachersTestAppWithLogging.DBModels
         /// <param name="userID">id пользователя</param>
         /// <returns>пользователь</returns>
         Task<UserDatum?> FindUserByIdAsync(int userID);
+
+        UserDatum? FindUserByIdSync(int userID);
     }
 }

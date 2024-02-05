@@ -30,6 +30,13 @@ namespace TeachersTestAppWithLogging.DBModels
             return user;
         }
 
+        public UserDatum? FindUserByIdSync(int userID)
+        {
+            UserDatum? user;
+            using (_dbContext = new Vorobiew2Context()) user = _dbContext.UserData.Find(userID);
+            return user;
+        }
+
         private Vorobiew2Context _dbContext;
     }
 }

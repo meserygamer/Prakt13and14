@@ -25,12 +25,13 @@
 		<Style Selector="ContentControl.PageSwitcher_PersonalPage">
 			<Setter Property="Template">
 				<ControlTemplate>
-					<v:PersonalCabinetUC DataContext="{Binding AuthorizationUCViewModel}"/>
+					<v:PersonalCabinetUC DataContext="{Binding PersonalCabinetUCViewModel}"/>
 				</ControlTemplate>
 			</Setter>
 		</Style>
 	</Window.Styles>
 
-	<ContentControl Classes.PageSwitcher_AuthPage="{Binding IsAuthPageOpen}"/>
+	<ContentControl Classes.PageSwitcher_AuthPage="{Binding IsAuthPageOpen}"
+					Classes.PageSwitcher_PersonalPage="{Binding IsPersonalPage}"/>
 
 </Window>

@@ -1,4 +1,5 @@
 ﻿using ReactiveUI;
+using TeachersTestAppWithLogging.DBModels;
 
 namespace TeachersTestAppWithLogging.ViewModels
 {
@@ -6,7 +7,8 @@ namespace TeachersTestAppWithLogging.ViewModels
     {
         public MainWindowViewModel() 
         {
-            AuthorizationUCViewModel = new AuthorizationUCViewModel();
+            _projectDataSource = new Vorobiew2ContextAdapter();
+            AuthorizationUCViewModel = new AuthorizationUCViewModel(_projectDataSource);
             AuthorizationUCViewModel.NotifyUserWasSuccessfulAuthorize += UserWasAuthorize;
         }
 
@@ -51,6 +53,8 @@ namespace TeachersTestAppWithLogging.ViewModels
 
         private bool _isPersonalPage = false;
 
+        private IProjectDataSource _projectDataSource;
+
         private AuthorizationUCViewModel _authorizationUCViewModel;
 
         private PersonalCabinetUCViewModel _personalCabinetUCViewModel;
@@ -60,7 +64,7 @@ namespace TeachersTestAppWithLogging.ViewModels
         {
             _userID = userID;
 
-            this.PersonalCabinetUCViewModel = new PersonalCabinetUCViewModel();
+            this.PersonalCabinetUCViewModel = new PersonalCabinetUCViewModel(userID, _projectDataSource);
 
             IsPersonalPage = true;
             IsAuthPageOpen = false;
