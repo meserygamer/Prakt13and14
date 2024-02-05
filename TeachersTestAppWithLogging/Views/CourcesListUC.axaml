@@ -10,7 +10,7 @@
 
 	<UserControl.Styles>
 		
-		<Style Selector="ListBox">
+		<Style Selector="ItemsRepeater">
 
 			<Setter Property="ItemTemplate">
 
@@ -19,7 +19,9 @@
 					<DataTemplate DataType="dbm:Cource">
 
 						<Border CornerRadius="5"
-								BorderThickness="1" BorderBrush="Black">
+								BorderThickness="1" BorderBrush="Black"
+								Margin="0 0 0 20"
+								Padding="5">
 
 							<Grid>
 
@@ -30,10 +32,12 @@
 								</Grid.RowDefinitions>
 								
 								<TextBlock Grid.Row="0"
-										   Text="{Binding Cource1}"/>
+										   Text="{Binding Cource1}"
+										   Margin="0 0 0 5"/>
 								
 								<TextBlock Grid.Row="1"
-										   Text="{Binding HoursNumber}"/>
+										   Text="{Binding HoursNumber}"
+										   Margin="0 0 0 5"/>
 								
 								<TextBlock Grid.Row="2"
 										   Text="{Binding}"/>
@@ -70,7 +74,7 @@
 				   Content="Список курсов" FontSize="22" FontWeight="Bold"
 				   HorizontalAlignment="Center"/>
 
-			<ListBox Grid.Column="1" Grid.Row="1"
+			<ItemsRepeater Grid.Column="1" Grid.Row="1"
 					 ItemsSource="{Binding Cources}"/>
 
 		</Grid>
