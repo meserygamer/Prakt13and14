@@ -28,6 +28,12 @@ namespace TeachersTestAppWithLogging.ViewModels
             set => this.RaiseAndSetIfChanged(ref _isPersonalPage, value);
         }
 
+        public bool IsCourcesPage
+        {
+            get => _isCourcesPage;
+            set => this.RaiseAndSetIfChanged(ref _isCourcesPage, value);
+        }
+
         public AuthorizationUCViewModel AuthorizationUCViewModel 
         {
             get => _authorizationUCViewModel;
@@ -46,6 +52,12 @@ namespace TeachersTestAppWithLogging.ViewModels
             }
         }
 
+        public CourcesListUCViewModel CourcesListUCViewModel
+        {
+            get => _courcesListUCViewModel;
+            set => this.RaiseAndSetIfChanged(ref _courcesListUCViewModel, value);
+        }
+
 
         private int _userID = -1;
 
@@ -53,20 +65,40 @@ namespace TeachersTestAppWithLogging.ViewModels
 
         private bool _isPersonalPage = false;
 
+        private bool _isCourcesPage = false;
+
         private IProjectDataSource _projectDataSource;
 
         private AuthorizationUCViewModel _authorizationUCViewModel;
 
         private PersonalCabinetUCViewModel _personalCabinetUCViewModel;
 
+        private CourcesListUCViewModel _courcesListUCViewModel;
+
 
         private void UserWasAuthorize(int userID)
         {
             _userID = userID;
 
-            this.PersonalCabinetUCViewModel = new PersonalCabinetUCViewModel(userID, _projectDataSource);
-
-            IsPersonalPage = true;
+            switch (_projectDataSource.GetUserRole(userID).IdRole)
+            {
+                case 1:
+                    {
+                        this.CourcesListUCViewModel = new CourcesListUCViewModel(_projectDataSource);
+                        IsCourcesPage = true;
+                        break;
+                    }
+                case 2: 
+                    {
+                        this.PersonalCabinetUCViewModel = new PersonalCabinetUCViewModel(userID, _projectDataSource);
+                        IsPersonalPage = true;
+                        break;
+                    }
+                default: 
+                    {
+                        return;
+                    }
+            }
             IsAuthPageOpen = false;
         }
     }

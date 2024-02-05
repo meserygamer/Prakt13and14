@@ -35,5 +35,18 @@ namespace TeachersTestAppWithLogging.DBModels
         /// </summary>
         /// <returns>Список гендеров</returns>
         List<UserGender> GetAllGenders();
+
+        /// <summary>
+        /// Метод для получения списка курсов
+        /// </summary>
+        /// <returns>Список курсов</returns>
+        List<Cource> GetAllCources();
+
+        /// <summary>
+        /// Метод для получения роли пользователя
+        /// </summary>
+        /// <param name="userID">Номер пользователя</param>
+        /// <returns>Роль пользователя</returns>
+        UserRole GetUserRole(int userID);
     }
 }

@@ -48,6 +48,29 @@ namespace TeachersTestAppWithLogging.DBModels
             return userGenders;
         }
 
+        public List<Cource> GetAllCources()
+        {
+            List<Cource> cources;
+            Vorobiew2Context _dbContextForThis;
+            using (_dbContextForThis = new Vorobiew2Context())
+            {
+                cources = _dbContextForThis.Cources.ToList();
+            }
+            return cources;
+        }
+
+        public UserRole GetUserRole(int userID)
+        {
+            UserRole role;
+            Vorobiew2Context _dbContextForThis;
+            using (_dbContextForThis = new Vorobiew2Context()) role = _dbContextForThis.UserRoles
+                                                                                       .Where(a => (a.UserLogins
+                                                                                                     .Where(a => a.IdUser == userID))
+                                                                                                     .LongCount() == 1)
+                                                                                       .First();
+            return role;
+        }
+
 
         private Vorobiew2Context _dbContext;
     }
