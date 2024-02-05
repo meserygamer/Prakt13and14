@@ -144,7 +144,7 @@
 									Classes="Osn"
 									HorizontalAlignment="Left">
 
-				<DatePicker SelectedDate="{Binding UserData.Birthdate}"/>
+				<DatePicker SelectedDate="{Binding UserData.BirthDayOffset}"/>
 
 			</HeaderedContentControl>
 

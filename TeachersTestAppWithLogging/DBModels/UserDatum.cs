@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace TeachersTestAppWithLogging;
 
@@ -22,6 +24,19 @@ public partial class UserDatum
     public string Email { get; set; } = null!;
 
     public string? PhoneNumber { get; set; }
+
+    [NotMapped]
+    public DateTimeOffset? BirthDayOffset
+    {
+        get => new DateTimeOffset(Birthdate);
+        set
+        {
+            if (value is not null)
+            {
+                Birthdate = ((DateTimeOffset)value).DateTime;
+            }
+        }
+    }
 
     public virtual UserGender IdGenderNavigation { get; set; } = null!;
 

@@ -33,7 +33,10 @@ namespace TeachersTestAppWithLogging.DBModels
         public UserDatum? FindUserByIdSync(int userID)
         {
             UserDatum? user;
-            using (_dbContext = new Vorobiew2Context()) user = _dbContext.UserData.Find(userID);
+            using (_dbContext = new Vorobiew2Context()) user = _dbContext.UserData
+                                                                         .Include(a => a.IdUserNavigation)
+                                                                         .Where(a => a.IdUser == userID)
+                                                                         .FirstOrDefault();
             return user;
         }
 
