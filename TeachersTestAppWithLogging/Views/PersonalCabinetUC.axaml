@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 			 xmlns:themes="clr-namespace:Material.Styles.Themes;assembly=Material.Styles"
 			 xmlns:vm="using:TeachersTestAppWithLogging.ViewModels"
+			 xmlns:vc="using:TeachersTestAppWithLogging.ValueConverters"
              mc:Ignorable="d" d:DesignWidth="1000" d:DesignHeight="650"
              x:Class="TeachersTestAppWithLogging.Views.PersonalCabinetUC">
 
@@ -72,6 +73,12 @@
 		</Style>
 
 	</UserControl.Styles>
+
+	<UserControl.Resources>
+
+		<vc:MonthsToYearsConverter x:Key="MToYConvert"/>
+		
+	</UserControl.Resources>
 
 	<UserControl.DataContext>
 		<vm:PersonalCabinetUCViewModel/>
@@ -160,7 +167,8 @@
 									Grid.Row="5" Grid.Column="0"
 									Classes="Osn">
 
-				<TextBox Text="{Binding UserData.Worktime}"/>
+				<TextBox Text="{Binding WorkTimeInYear}"
+						 IsFocused="{Binding WorkTimeIsFocused, Mode=OneWayToSource}"/>
 
 			</HeaderedContentControl>
 
@@ -205,7 +213,7 @@
 									Grid.Row="4" Grid.Column="1"
 									Classes="Osn" IsVisible="{Binding IsChecked}">
 
-				<TextBox Text="{Binding NewPassword}"/>
+				<TextBox Text="{Binding NewPassword}" PasswordChar="*"/>
 
 			</HeaderedContentControl>
 
@@ -213,7 +221,7 @@
 									Grid.Row="5" Grid.Column="1"
 									Classes="Osn" IsVisible="{Binding IsChecked}">
 
-				<TextBox Text="{Binding NewPasswordConfirm}"/>
+				<TextBox Text="{Binding NewPasswordConfirm}" PasswordChar="*"/>
 
 			</HeaderedContentControl>
 
@@ -221,7 +229,7 @@
 					HorizontalAlignment="Center" Width="300" VerticalAlignment="Stretch"
 					Margin="0 15 0 15" Content="Подтверить изменения"
 					HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
-					Classes="Outline" MaxHeight="120" MinHeight="50">
+					Classes="Outline" MaxHeight="120" MinHeight="50" Command="{Binding ConfirmChanges}">
 
 				<Button.Styles>
 					

@@ -25,19 +25,6 @@ public partial class UserDatum
 
     public string? PhoneNumber { get; set; }
 
-    [NotMapped]
-    public DateTimeOffset? BirthDayOffset
-    {
-        get => new DateTimeOffset(Birthdate);
-        set
-        {
-            if (value is not null)
-            {
-                Birthdate = ((DateTimeOffset)value).DateTime;
-            }
-        }
-    }
-
     public virtual UserGender IdGenderNavigation { get; set; } = null!;
 
     public virtual UserLogin IdUserNavigation { get; set; } = null!;
