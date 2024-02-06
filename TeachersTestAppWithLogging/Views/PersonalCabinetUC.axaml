@@ -4,13 +4,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 			 xmlns:themes="clr-namespace:Material.Styles.Themes;assembly=Material.Styles"
 			 xmlns:vm="using:TeachersTestAppWithLogging.ViewModels"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             mc:Ignorable="d" d:DesignWidth="1000" d:DesignHeight="650"
              x:Class="TeachersTestAppWithLogging.Views.PersonalCabinetUC">
 
 	<UserControl.Styles>
 
 		<Style Selector="HeaderedContentControl">
-			<Setter Property="Width" Value="200"/>
 			<Setter Property="Height" Value="50"/>
 			<Setter Property="Margin" Value="0 0 10 0"/>
 			<Setter Property="Template">
@@ -42,7 +41,6 @@
 		</Style>
 
 		<Style Selector="HeaderedContentControl.Osn">
-			<Setter Property="Width" Value="300"/>
 			<Setter Property="Height" Value="50"/>
 			<Setter Property="Margin" Value="0 0 10 0"/>
 			<Setter Property="Template">
@@ -79,6 +77,8 @@
 		<Grid>
 
 			<Grid.RowDefinitions>
+				<RowDefinition Height="auto"/>
+				<RowDefinition/>
 				<RowDefinition/>
 				<RowDefinition/>
 				<RowDefinition/>
@@ -96,34 +96,42 @@
 		           Content="Личный кабинет"
 		           FontSize="22"
 		           HorizontalAlignment="Center"
-		           FontWeight="Bold"/>
+		           FontWeight="Bold"
+				   Margin="0 0 0 15"/>
 
-			<StackPanel Orientation="Horizontal"
-						Grid.Row="1">
+			<Grid Grid.Row="1" Grid.ColumnSpan="2">
 
-				<HeaderedContentControl Header="Фамилия">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition/>
+					<ColumnDefinition/>
+					<ColumnDefinition/>
+				</Grid.ColumnDefinitions>
+
+				<HeaderedContentControl Header="Фамилия"
+										Grid.Column="0">
 					
 					<TextBox Text="{Binding UserData.Surname}"/>
 					
 				</HeaderedContentControl>
 				
-				<HeaderedContentControl Header="Имя">
+				<HeaderedContentControl Header="Имя"
+										Grid.Column="1">
 
 					<TextBox Text="{Binding UserData.Name}"/>
 
 				</HeaderedContentControl>
 
-				<HeaderedContentControl Header="Отчество">
+				<HeaderedContentControl Header="Отчество"
+										Grid.Column="2">
 
 					<TextBox Text="{Binding UserData.Patronymic}"/>
 
 				</HeaderedContentControl>
 				
-			</StackPanel>
+			</Grid>
 
 			<HeaderedContentControl Header="Логин"
 									Grid.Row="2"
-									HorizontalAlignment="Left"
 									Classes="Osn">
 
 				<TextBox Text="{Binding UserData.IdUserNavigation.Login}"/>
@@ -132,7 +140,6 @@
 
 			<HeaderedContentControl Header="Пол"
 									Grid.Row="3"
-									HorizontalAlignment="Left"
 									Classes="Osn">
 
 				<ComboBox ItemsSource="{Binding GenderList}" SelectedItem="{Binding UserData.IdGenderNavigation}"/>
@@ -141,39 +148,49 @@
 
 			<HeaderedContentControl Header="Дата рождения"
 									Grid.Row="4"
-									Classes="Osn"
-									HorizontalAlignment="Left">
+									Classes="Osn">
 
 				<DatePicker SelectedDate="{Binding UserData.BirthDayOffset}"/>
 
 			</HeaderedContentControl>
 
 			<HeaderedContentControl Header="Стаж (В годах)"
-									Grid.Row="2" Grid.Column="1"
-									Classes="Osn"
-									HorizontalAlignment="Left">
+									Grid.Row="5" Grid.Column="0"
+									Classes="Osn">
 
 				<TextBox Text="{Binding UserData.Worktime}"/>
 
 			</HeaderedContentControl>
 
 			<HeaderedContentControl Header="Почта"
-									Grid.Row="3" Grid.Column="1"
-									Classes="Osn"
-									HorizontalAlignment="Left">
+									Grid.Row="6" Grid.Column="0"
+									Classes="Osn">
 
 				<TextBox Text="{Binding UserData.Email}"/>
 
 			</HeaderedContentControl>
 			
 			<HeaderedContentControl Header="Телефон"
-									Grid.Row="4" Grid.Column="1"
-									Classes="Osn"
-									HorizontalAlignment="Left">
+									Grid.Row="2" Grid.Column="1"
+									Classes="Osn">
 
 				<TextBox Text="{Binding UserData.PhoneNumber}"/>
 
 			</HeaderedContentControl>
+
+			<Button Grid.Row="7" Grid.ColumnSpan="2"
+					HorizontalAlignment="Center" Width="300" VerticalAlignment="Stretch"
+					Margin="0 15 0 15" Content="Подтверить изменения"
+					HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+					Classes="Outline" MaxHeight="120" MinHeight="50">
+
+				<Button.Styles>
+					
+					<themes:MaterialTheme BaseTheme="Light" PrimaryColor="Pink" SecondaryColor="Blue" />
+					
+				</Button.Styles>
+				
+			</Button>
 			
 		</Grid>
 	</Border>
