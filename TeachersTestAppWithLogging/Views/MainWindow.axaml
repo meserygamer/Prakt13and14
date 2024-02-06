@@ -38,8 +38,12 @@
 		</Style>
 	</Window.Styles>
 
-	<ContentControl Classes.PageSwitcher_AuthPage="{Binding IsAuthPageOpen}"
+	<Grid>
+
+		<ContentControl Classes.PageSwitcher_AuthPage="{Binding IsAuthPageOpen}"
 					Classes.PageSwitcher_PersonalPage="{Binding IsPersonalPage}"
 					Classes.PageSwitcher_CourcesPage="{Binding IsCourcesPage}"/>
+
+	</Grid>
 
 </Window>
