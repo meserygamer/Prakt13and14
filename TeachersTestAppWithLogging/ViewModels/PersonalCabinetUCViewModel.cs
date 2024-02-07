@@ -7,6 +7,7 @@ using Microsoft.VisualBasic;
 using MsBox.Avalonia;
 using ReactiveUI;
 using TeachersTestAppWithLogging.DBModels;
+using TeachersTestAppWithLogging.Models;
 using Tmds.DBus.Protocol;
 
 namespace TeachersTestAppWithLogging.ViewModels
@@ -20,6 +21,7 @@ namespace TeachersTestAppWithLogging.ViewModels
 
         public PersonalCabinetUCViewModel(int userID, IProjectDataSource source) 
         {
+            _model = new PersonalCabinetUCModel();
             CheckBoxCommand = ReactiveCommand.Create(() => { IsChecked = !IsChecked; });
             ConfirmChanges = ReactiveCommand.Create(ConfirmChangesCommand);
             _source = source;
@@ -102,7 +104,15 @@ namespace TeachersTestAppWithLogging.ViewModels
                     .ShowAsync();
                 return;
             }
-            if(UserData.IdUserNavigation.Login.Length < 3 || UserData.IdUserNavigation.Login is null)
+            if (UserData.Patronymic is null || UserData.Patronymic.Length == 0)
+            {
+                MessageBoxManager.GetMessageBoxStandard("Не удалось сохранить изменения!"
+                    , "Поле отчества пустое!"
+                    , MsBox.Avalonia.Enums.ButtonEnum.Ok)
+                    .ShowAsync();
+                return;
+            }
+            if (UserData.IdUserNavigation.Login.Length < 3 || UserData.IdUserNavigation.Login is null)
             {
                 MessageBoxManager.GetMessageBoxStandard("Не удалось сохранить изменения!"
                     , "Логин должен содежать не менее 3 символов!"
@@ -127,6 +137,52 @@ namespace TeachersTestAppWithLogging.ViewModels
                     .ShowAsync();
                 return;
             }
+
+            if (UserData.PhoneNumber is null || UserData.PhoneNumber.Length == 0)
+            {
+                MessageBoxManager.GetMessageBoxStandard("Не удалось сохранить изменения!"
+                    , "Поле телефона не заполнено!"
+                    , MsBox.Avalonia.Enums.ButtonEnum.Ok)
+                    .ShowAsync();
+                return;
+            }
+
+            if (!(UserData.PhoneNumber is null || UserData.PhoneNumber.Length == 0))
+            {
+                if (!Regex.IsMatch(UserData.PhoneNumber, "^((8|\\+7)[\\- ]?)?(\\(?\\d{3}\\)?[\\- ]?)?[\\d\\- ]{7,10}$"))
+                {
+                    MessageBoxManager.GetMessageBoxStandard("Не удалось сохранить изменения!"
+                    , "Поле телефона заполнено, но введенный номер некорректен!"
+                    , MsBox.Avalonia.Enums.ButtonEnum.Ok)
+                    .ShowAsync();
+                    return;
+                }
+
+                UserData.PhoneNumber = _model.ConvertPhoneNumberTo89Format(UserData.PhoneNumber);
+            }
+
+            if (IsChecked)
+            {
+                if(NewPassword is null || NewPassword.Length == 0)
+                {
+                    MessageBoxManager.GetMessageBoxStandard("Не удалось сохранить изменения!"
+                    , "Вы выбрали изменение пароля, но не заполнили поле нового пароля!"
+                    , MsBox.Avalonia.Enums.ButtonEnum.Ok)
+                    .ShowAsync();
+                    return;
+                }
+                if(NewPassword != NewPasswordConfirm)
+                {
+                    MessageBoxManager.GetMessageBoxStandard("Не удалось сохранить изменения!"
+                    , "Новый пароль не совпадает с полем подтверждения!"
+                    , MsBox.Avalonia.Enums.ButtonEnum.Ok)
+                    .ShowAsync();
+                    return;
+                }
+                UserData.IdUserNavigation.Password = NewPassword;
+            }
+
+            _source.UpdateUser(UserData);
         }
 
 
@@ -143,6 +199,8 @@ namespace TeachersTestAppWithLogging.ViewModels
         private bool _workTimeIsFocused = false;
 
         private string? _workTimeInYear;
+
+        private PersonalCabinetUCModel _model;
 
 
         private void SetUserDatum(int userID) => UserData = _source.FindUserByIdSync(userID);

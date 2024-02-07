@@ -48,5 +48,12 @@ namespace TeachersTestAppWithLogging.DBModels
         /// <param name="userID">Номер пользователя</param>
         /// <returns>Роль пользователя</returns>
         UserRole GetUserRole(int userID);
+
+        /// <summary>
+        /// Метод для обновлении информации о пользователе
+        /// </summary>
+        /// <param name="user">Пользователь</param>
+        /// <returns>Статус добавления</returns>
+        bool UpdateUser(UserDatum user);
     }
 }

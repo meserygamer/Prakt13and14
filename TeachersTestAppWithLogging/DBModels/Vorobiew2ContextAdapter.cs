@@ -73,6 +73,17 @@ namespace TeachersTestAppWithLogging.DBModels
             return role;
         }
 
+        public bool UpdateUser(UserDatum user)
+        {
+            using(Vorobiew2Context DB = new Vorobiew2Context())
+            {
+                DB.Entry(user).State = EntityState.Modified;
+                DB.Entry(user.IdUserNavigation).State = EntityState.Modified;
+                DB.Entry(user.IdGenderNavigation).State = EntityState.Modified;
+                DB.SaveChanges();
+            }
+            return true;
+        }
 
         private Vorobiew2Context _dbContext;
     }

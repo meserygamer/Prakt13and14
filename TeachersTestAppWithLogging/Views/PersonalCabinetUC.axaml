@@ -205,7 +205,7 @@
 					
 				</Button>
 				
-				<Label Content="Я здесь" VerticalAlignment="Center"/>
+				<Label Content="Изменить пароль" VerticalAlignment="Center"/>
 
 			</StackPanel>
 
