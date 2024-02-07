@@ -188,6 +188,12 @@ namespace TeachersTestAppWithLogging.ViewModels
             }
 
             _source.UpdateUser(UserData);
+
+            MessageBoxManager.GetMessageBoxStandard("Изменения сохранены!"
+                    , "Изменения сохранены успешно!"
+                    , MsBox.Avalonia.Enums.ButtonEnum.Ok)
+                    .ShowAsync();
+            return;
         }
 
 
