@@ -87,15 +87,26 @@
 				<HeaderedContentControl Grid.Row="0"
 										Header="Сортировка">
 
-					<StackPanel>
+					<Grid>
 
-						<ComboBox/>
+						<Grid.RowDefinitions>
+							<RowDefinition/>
+							<RowDefinition/>
+							<RowDefinition/>
+						</Grid.RowDefinitions>
 
-						<RadioButton/>
+						<ComboBox Grid.Row="0">
+							<ComboBoxItem>Название</ComboBoxItem>
+							<ComboBoxItem>Кол-во часов</ComboBoxItem>
+						</ComboBox>
+						
+						<RadioButton Grid.Row="1" 
+									 Content="По возрастанию"/>
 
-						<RadioButton/>
-
-					</StackPanel>
+						<RadioButton Grid.Row="2" 
+									 Content="По убыванию"/>
+						
+					</Grid>
 
 				</HeaderedContentControl>
 				
