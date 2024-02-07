@@ -1,5 +1,7 @@
-﻿using ReactiveUI;
+﻿using Avalonia.Controls;
+using ReactiveUI;
 using TeachersTestAppWithLogging.DBModels;
+using TeachersTestAppWithLogging.Views;
 
 namespace TeachersTestAppWithLogging.ViewModels
 {
@@ -10,28 +12,7 @@ namespace TeachersTestAppWithLogging.ViewModels
             _projectDataSource = new Vorobiew2ContextAdapter();
             AuthorizationUCViewModel = new AuthorizationUCViewModel(_projectDataSource);
             AuthorizationUCViewModel.NotifyUserWasSuccessfulAuthorize += UserWasAuthorize;
-        }
-
-
-        public bool IsAuthPageOpen
-        {
-            get => _isAuthPageOpen;
-            set
-            {
-                this.RaiseAndSetIfChanged(ref _isAuthPageOpen, value);
-            }
-        }
-
-        public bool IsPersonalPage
-        {
-            get => _isPersonalPage;
-            set => this.RaiseAndSetIfChanged(ref _isPersonalPage, value);
-        }
-
-        public bool IsCourcesPage
-        {
-            get => _isCourcesPage;
-            set => this.RaiseAndSetIfChanged(ref _isCourcesPage, value);
+            ActiveUC = new AuthorizationUC() { DataContext = AuthorizationUCViewModel };
         }
 
         public AuthorizationUCViewModel AuthorizationUCViewModel 
@@ -58,14 +39,14 @@ namespace TeachersTestAppWithLogging.ViewModels
             set => this.RaiseAndSetIfChanged(ref _courcesListUCViewModel, value);
         }
 
+        public UserControl ActiveUC
+        {
+            get => _activeUC;
+            set => this.RaiseAndSetIfChanged(ref _activeUC, value);
+        }
+
 
         private int _userID = -1;
-
-        private bool _isAuthPageOpen = true;
-
-        private bool _isPersonalPage = false;
-
-        private bool _isCourcesPage = false;
 
         private IProjectDataSource _projectDataSource;
 
@@ -74,6 +55,8 @@ namespace TeachersTestAppWithLogging.ViewModels
         private PersonalCabinetUCViewModel _personalCabinetUCViewModel;
 
         private CourcesListUCViewModel _courcesListUCViewModel;
+
+        private UserControl _activeUC;
 
 
         private void UserWasAuthorize(int userID)
@@ -85,13 +68,13 @@ namespace TeachersTestAppWithLogging.ViewModels
                 case 1:
                     {
                         this.CourcesListUCViewModel = new CourcesListUCViewModel(_projectDataSource);
-                        IsCourcesPage = true;
+                        ActiveUC = new CourcesListUC() { DataContext = CourcesListUCViewModel };
                         break;
                     }
                 case 2: 
                     {
                         this.PersonalCabinetUCViewModel = new PersonalCabinetUCViewModel(userID, _projectDataSource);
-                        IsPersonalPage = true;
+                        ActiveUC = new PersonalCabinetUC() { DataContext = PersonalCabinetUCViewModel };
                         break;
                     }
                 default: 
@@ -99,7 +82,6 @@ namespace TeachersTestAppWithLogging.ViewModels
                         return;
                     }
             }
-            IsAuthPageOpen = false;
         }
     }
 }

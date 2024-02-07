@@ -14,35 +14,9 @@
         <vm:MainWindowViewModel/>
     </Design.DataContext>
 
-	<Window.Styles>
-		<Style Selector="ContentControl.PageSwitcher_AuthPage">
-			<Setter Property="Template">
-				<ControlTemplate>
-					<v:AuthorizationUC DataContext="{Binding AuthorizationUCViewModel}"/>
-				</ControlTemplate>
-			</Setter>
-		</Style>
-		<Style Selector="ContentControl.PageSwitcher_PersonalPage">
-			<Setter Property="Template">
-				<ControlTemplate>
-					<v:PersonalCabinetUC DataContext="{Binding PersonalCabinetUCViewModel}"/>
-				</ControlTemplate>
-			</Setter>
-		</Style>
-		<Style Selector="ContentControl.PageSwitcher_CourcesPage">
-			<Setter Property="Template">
-				<ControlTemplate>
-					<v:CourcesListUC DataContext="{Binding CourcesListUCViewModel}"/>
-				</ControlTemplate>
-			</Setter>
-		</Style>
-	</Window.Styles>
-
 	<Grid>
 
-		<ContentControl Classes.PageSwitcher_AuthPage="{Binding IsAuthPageOpen}"
-					Classes.PageSwitcher_PersonalPage="{Binding IsPersonalPage}"
-					Classes.PageSwitcher_CourcesPage="{Binding IsCourcesPage}"/>
+		<ContentControl Content="{Binding ActiveUC}"/>
 
 	</Grid>
 
