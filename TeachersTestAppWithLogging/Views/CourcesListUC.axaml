@@ -37,11 +37,11 @@
 										   Margin="0 0 0 5"/>
 								
 								<TextBlock Grid.Row="1"
-										   Text="{Binding HoursNumber}"
+										   Text="{Binding HoursNumber, StringFormat='Количество часов: {0}'}"
 										   Margin="0 0 0 5"/>
 								
 								<TextBlock Grid.Row="2"
-										   Text="{Binding PeopleCompleteNumber}"/>
+										   Text="{Binding PeopleCompleteNumber, StringFormat='Количество прошедших курс: {0}'}"/>
 								
 							</Grid>
 							
@@ -56,7 +56,6 @@
 		</Style>
 
 		<Style Selector="HeaderedContentControl">
-			<Setter Property="Margin" Value="0 0 10 0"/>
 			<Setter Property="Template">
 				<Setter.Value>
 					<ControlTemplate>
@@ -125,25 +124,27 @@
 
 
 				<TextBox Height="60" Grid.RowSpan="2"
-					 FontSize="20" Margin="0 0 20 0">
+					 FontSize="20" Margin="0 0 20 0" Text="{Binding SearchQuarry}">
 					<TextBox.Styles>
 						<themes:MaterialTheme BaseTheme="Light" PrimaryColor="Pink" SecondaryColor="Blue" />
 					</TextBox.Styles>
 				</TextBox>
 				
-				<RadioButton Grid.Column="1" Content="По названию"/>
+				<RadioButton Grid.Column="1" Content="По названию" IsChecked="{Binding IsSearchByName}"/>
 				<RadioButton Grid.Column="1" Grid.Row="1" Content="По кол-ву часов"/>
 				
 			</Grid>
 
-			<Grid Grid.Column="0" Grid.Row="1">
+			<Grid Grid.Column="0" Grid.Row="1" Margin="0 0 15 0">
 
 				<Grid.RowDefinitions>
-					<RowDefinition/>
+					<RowDefinition Height="auto"/>
+					<RowDefinition Height="auto"/>
 					<RowDefinition/>
 				</Grid.RowDefinitions>
 
-				<HeaderedContentControl Header="Сортировка" Height="150">
+				<HeaderedContentControl Header="Сортировка" Height="150"
+										Margin="0 0 0 20">
 
 					<Grid>
 
@@ -153,12 +154,12 @@
 							<RowDefinition/>
 						</Grid.RowDefinitions>
 
-						<ComboBox Grid.Row="0" SelectedIndex="0">
+						<ComboBox Grid.Row="0" SelectedIndex="{Binding SelectedSortIndex}">
 							<ComboBoxItem>Название</ComboBoxItem>
 							<ComboBoxItem>Кол-во часов</ComboBoxItem>
 						</ComboBox>
 
-						<RadioButton Grid.Row="1"
+						<RadioButton Grid.Row="1" IsChecked="{Binding IsSortingABS}"
 									 Content="По возрастанию"/>
 
 						<RadioButton Grid.Row="2"
@@ -179,7 +180,7 @@
 							<RowDefinition/>
 						</Grid.RowDefinitions>
 
-						<ComboBox Grid.Row="0" SelectedIndex="0">
+						<ComboBox Grid.Row="0" SelectedIndex="{Binding SelectedFilterIndex}">
 							<ComboBoxItem>Нет фильтра</ComboBoxItem>
 							<ComboBoxItem>От 0 до 30 ч.</ComboBoxItem>
 							<ComboBoxItem>От 30 до 60 ч.</ComboBoxItem>
