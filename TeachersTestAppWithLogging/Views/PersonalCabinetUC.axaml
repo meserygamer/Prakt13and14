@@ -167,8 +167,7 @@
 									Grid.Row="5" Grid.Column="0"
 									Classes="Osn">
 
-				<TextBox Text="{Binding WorkTimeInYear}"
-						 IsFocused="{Binding WorkTimeIsFocused, Mode=OneWayToSource}"/>
+				<TextBox Text="{Binding WorkTimeInYear}"/>
 
 			</HeaderedContentControl>
 
@@ -195,7 +194,8 @@
 						Command="{Binding CheckBoxCommand}"
 						Classes.Outline="{Binding !IsChecked}"
 						Classes.Brushed="{Binding IsChecked}">
-					<!--По другому никак, чекбоксы и радиобатоны не отображаются-->
+					<!--По другому никак, чекбоксы и радиобатоны не отображаются (лись,
+					баг пификшен, это на память)-->
 
 					<Button.Styles>
 

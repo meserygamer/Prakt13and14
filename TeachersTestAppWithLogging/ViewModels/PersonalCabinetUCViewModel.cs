@@ -59,25 +59,6 @@ namespace TeachersTestAppWithLogging.ViewModels
             get => _isChecked;
             set => this.RaiseAndSetIfChanged(ref _isChecked, value);
         }
-        public bool WorkTimeIsFocused
-        {
-            set
-            {
-                if (value is false && _workTimeIsFocused == true)
-                {
-                    try
-                    {
-                        double year = Convert.ToDouble(WorkTimeInYear);
-                        SetWorkTime((int)(year * 12));
-                    }
-                    catch
-                    {
-                        SetWorkTime(0);
-                    }
-                }
-                _workTimeIsFocused = value;
-            }
-        }
 
         public string? WorkTimeInYear
         {
@@ -88,7 +69,17 @@ namespace TeachersTestAppWithLogging.ViewModels
 
         public void ConfirmChangesCommand()
         {
-            if(UserData.Surname.Length == 0 || UserData.Surname is null)
+            try
+            {
+                double year = Convert.ToDouble(WorkTimeInYear);
+                SetWorkTime((int)(year * 12));
+            }
+            catch
+            {
+                SetWorkTime(0);
+            }
+
+            if (UserData.Surname.Length == 0 || UserData.Surname is null)
             {
                 MessageBoxManager.GetMessageBoxStandard("Не удалось сохранить изменения!"
                     , "Поле фамилии пустое!"
@@ -96,6 +87,7 @@ namespace TeachersTestAppWithLogging.ViewModels
                     .ShowAsync();
                 return;
             }
+
             if (UserData.Name.Length == 0 || UserData.Name is null)
             {
                 MessageBoxManager.GetMessageBoxStandard("Не удалось сохранить изменения!"
@@ -104,6 +96,7 @@ namespace TeachersTestAppWithLogging.ViewModels
                     .ShowAsync();
                 return;
             }
+
             if (UserData.Patronymic is null || UserData.Patronymic.Length == 0)
             {
                 MessageBoxManager.GetMessageBoxStandard("Не удалось сохранить изменения!"
@@ -112,6 +105,7 @@ namespace TeachersTestAppWithLogging.ViewModels
                     .ShowAsync();
                 return;
             }
+
             if (UserData.IdUserNavigation.Login.Length < 3 || UserData.IdUserNavigation.Login is null)
             {
                 MessageBoxManager.GetMessageBoxStandard("Не удалось сохранить изменения!"
@@ -120,6 +114,7 @@ namespace TeachersTestAppWithLogging.ViewModels
                     .ShowAsync();
                 return;
             }
+
             if (UserData.Birthdate >= DateTime.Now)
             {
                 MessageBoxManager.GetMessageBoxStandard("Не удалось сохранить изменения!"
@@ -128,6 +123,16 @@ namespace TeachersTestAppWithLogging.ViewModels
                     .ShowAsync();
                 return;
             }
+
+            if (UserData.Email is null || UserData.Email.Length == 0)
+            {
+                MessageBoxManager.GetMessageBoxStandard("Не удалось сохранить изменения!"
+                    , "Поле почты пустое!"
+                    , MsBox.Avalonia.Enums.ButtonEnum.Ok)
+                    .ShowAsync();
+                return;
+            }
+
             if (UserData.Email.Length > 0 && !Regex.IsMatch(UserData.Email,
                 "(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])"))
             {
@@ -196,7 +201,6 @@ namespace TeachersTestAppWithLogging.ViewModels
         private string _newPasswordConfirm;
 
         private bool _isChecked = false;
-        private bool _workTimeIsFocused = false;
 
         private string? _workTimeInYear;
 

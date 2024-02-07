@@ -107,8 +107,9 @@
 				   Content="Список курсов" FontSize="22" FontWeight="Bold"
 				   HorizontalAlignment="Center"/>
 
-			<ItemsRepeater Grid.Column="1" Grid.Row="1"
-					 ItemsSource="{Binding Cources}"/>
+			<ScrollViewer Grid.Column="1" Grid.Row="1">
+				<ItemsRepeater ItemsSource="{Binding Cources}"/>
+			</ScrollViewer>
 
 			<Grid Grid.Column="1" Height="60" Margin="0 15 0 0">
 
